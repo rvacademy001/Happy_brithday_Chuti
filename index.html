@@ -50,12 +50,16 @@
 
   section{position:relative; z-index:2;}
 
-  /* ---------- CAKE INTRO OVERLAY ---------- */
+  /* ---------- CAKE INTRO OVERLAY (Multi-Stage) ---------- */
   .cake-overlay {
     position: fixed; inset: 0; background: radial-gradient(circle, #3C2233, #1e0e18);
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     z-index: 2000; transition: opacity 0.8s ease; color: #fff; text-align: center;
     padding: 20px;
+  }
+  .intro-step {
+    display: none; flex-direction: column; align-items: center;
+    justify-content: center; text-align: center; width: 100%; height: 100%;
   }
   .cake-container {
     position: relative; max-width: 400px; width: 100%; text-align: center;
@@ -117,6 +121,29 @@
     animation: pulse 1.5s infinite; transition: transform 0.2s;
   }
   .cut-btn:active { transform: scale(0.95); }
+
+  /* Start Screen & Countdown styles */
+  .start-btn {
+    background: var(--rose); color: #fff; border: none; width: 85px; height: 85px;
+    border-radius: 50%; font-size: 36px; cursor: pointer; display: flex;
+    align-items: center; justify-content: center; box-shadow: 0 0 20px var(--rose);
+    animation: pulse 1.5s infinite; transition: transform 0.2s;
+  }
+  .start-btn:active { transform: scale(0.92); }
+  
+  @keyframes scaleDigit {
+    0% { transform: scale(0.7); opacity: 0.4; }
+    100% { transform: scale(1.2); opacity: 1; }
+  }
+  #countdown-num {
+    font-size: 130px; font-weight: bold; color: var(--gold-soft);
+    font-family: 'Abhaya Libre', serif; animation: scaleDigit 1s infinite alternate;
+  }
+  #step-greeting h1 {
+    font-size: clamp(34px, 8vw, 68px); color: var(--gold-soft);
+    font-family: 'Abhaya Libre', serif; text-shadow: 0 0 18px var(--rose);
+    animation: pulse 1.8s infinite;
+  }
 
   /* ---------- HERO & LOVE TIMER & BALLOONS ---------- */
   .hero{
@@ -589,32 +616,54 @@
 
 <!-- CAKE INTRO OVERLAY -->
 <div class="cake-overlay" id="cake-overlay">
-  <div class="cake-container">
-    <h2>සුබ උපන්දිනයක් වේවා, නිලිනි! 👑</h2>
-    <p class="intro-desc">ඉටිපන්දම් ටච් කර නිවා, කේක් එක කපන්න</p>
-    <div class="cake">
-      <!-- 3 Candles -->
-      <div class="candle candle-1" onclick="extinguishCandle(1)">
-        <div class="flame" id="flame-1"></div>
-        <div class="smoke" id="smoke-1"></div>
-      </div>
-      <div class="candle candle-2" onclick="extinguishCandle(2)">
-        <div class="flame" id="flame-2"></div>
-        <div class="smoke" id="smoke-2"></div>
-      </div>
-      <div class="candle candle-3" onclick="extinguishCandle(3)">
-        <div class="flame" id="flame-3"></div>
-        <div class="smoke" id="smoke-3"></div>
+  
+  <!-- WELCOME / CLICK TO START SURPRISE -->
+  <div class="intro-step" id="step-welcome" style="display: flex;">
+    <h2>Chuti වෙනුවෙන් Prashan ගෙන් සර්ප්‍රයිස් එකක්... ❤</h2>
+    <p class="intro-desc" style="margin-bottom: 25px;">ආදරණීය මතකය විවෘත කිරීමට පහත රතු හෘදය ක්ලික් කරන්න</p>
+    <button class="start-btn" onclick="startIntro()">&#10084;</button>
+  </div>
+
+  <!-- 5 SECOND COUNTDOWN SCREEN -->
+  <div class="intro-step" id="step-countdown">
+    <div id="countdown-num">5</div>
+  </div>
+
+  <!-- HAPPY BIRTHDAY CHUTI DISPLAY -->
+  <div class="intro-step" id="step-greeting">
+    <h1>Happy Birthday Chuti! 👑</h1>
+  </div>
+
+  <!-- CAKE CUTTING SCREEN -->
+  <div class="intro-step" id="step-cake">
+    <div class="cake-container">
+      <h2>සුබ උපන්දිනයක් වේවා, නිලිනි! 👑</h2>
+      <p class="intro-desc">ඉටිපන්දම් ටච් කර නිවා, කේක් එක කපන්න</p>
+      <div class="cake">
+        <!-- 3 Candles -->
+        <div class="candle candle-1" onclick="extinguishCandle(1)">
+          <div class="flame" id="flame-1"></div>
+          <div class="smoke" id="smoke-1"></div>
+        </div>
+        <div class="candle candle-2" onclick="extinguishCandle(2)">
+          <div class="flame" id="flame-2"></div>
+          <div class="smoke" id="smoke-2"></div>
+        </div>
+        <div class="candle candle-3" onclick="extinguishCandle(3)">
+          <div class="flame" id="flame-3"></div>
+          <div class="smoke" id="smoke-3"></div>
+        </div>
+        
+        <!-- Cake layers -->
+        <div class="cake-layer cake-layer-3"></div>
+        <div class="cake-layer cake-layer-2"></div>
+        <div class="cake-layer cake-layer-1"></div>
       </div>
       
-      <!-- Cake layers -->
-      <div class="cake-layer cake-layer-3"></div>
-      <div class="cake-layer cake-layer-2"></div>
-      <div class="cake-layer cake-layer-1"></div>
+      <button class="cut-btn" id="cut-btn" onclick="cutCake()">Cut the Cake 🎂</button>
     </div>
-    
-    <button class="cut-btn" id="cut-btn" onclick="cutCake()">Cut the Cake 🎂</button>
   </div>
+
 </div>
 
 <!-- MUSIC CONTROLLER BUTTON -->
@@ -632,7 +681,7 @@
   </div>
 
   <div class="eyebrow">අපි එකට සමරන 6 වෙනි උපන්දිනය</div>
-  <h1>Happy Birthday Nilini! 👑</h1>
+  <h1>Nilini &amp; Prashan<span class="script" style="display:block;font-size:.42em;color:var(--gold); margin-top:10px;">අපේ ආදරය</span></h1>
   <div class="names-sep"></div>
   <p class="sub">යාළුවෙච්ච දා ඉඳන් ඔයාගේ උපන්දිනය එකට සමරන 6 වෙනි වතාව මේක. හැම අවුරුද්දකම ඔයා ලඟ ඉන්න ලැබීම මට ලොකුම වාසනාවක්. සුබ උපන් දිනයක් වේවා, මගේ ආදරණීයම කෙනා.</p>
   
@@ -1198,7 +1247,48 @@
     field.appendChild(h);
   }
 
-  // ---------- CAKE CUTTING AND CANDLE BLOWING ----------
+  // ---------- INTERACTIVE MULTI-STAGE INTRO FLOW ----------
+  let countdownVal = 5;
+  let countdownInterval = null;
+
+  function startIntro() {
+    // 1. Swap welcome screen for countdown screen
+    document.getElementById('step-welcome').style.display = 'none';
+    document.getElementById('step-countdown').style.display = 'flex';
+    
+    // 2. Play Happy Birthday song immediately (first user interaction!)
+    startHappyBirthdayMusic();
+    
+    // 3. Start 5-second countdown timer
+    const numDiv = document.getElementById('countdown-num');
+    numDiv.textContent = countdownVal;
+    
+    countdownInterval = setInterval(() => {
+      countdownVal--;
+      if (countdownVal > 0) {
+        numDiv.textContent = countdownVal;
+        // reset scale digit animation reflow
+        numDiv.style.animation = 'none';
+        numDiv.offsetHeight;
+        numDiv.style.animation = 'scaleDigit 1s infinite alternate';
+      } else {
+        clearInterval(countdownInterval);
+        showBirthdayGreeting();
+      }
+    }, 1000);
+  }
+
+  function showBirthdayGreeting() {
+    document.getElementById('step-countdown').style.display = 'none';
+    document.getElementById('step-greeting').style.display = 'flex';
+    
+    // Show greeting for 3 seconds then go to cake screen
+    setTimeout(() => {
+      document.getElementById('step-greeting').style.display = 'none';
+      document.getElementById('step-cake').style.display = 'flex';
+    }, 3000);
+  }
+
   let extinguishedCandles = 0;
   function extinguishCandle(num) {
     const flame = document.getElementById('flame-' + num);
@@ -1215,7 +1305,7 @@
 
   function cutCake() {
     triggerCakeConfetti();
-    startHappyBirthdayMusic();
+    // Keep playing music in loop
     const overlay = document.getElementById('cake-overlay');
     overlay.style.opacity = 0;
     setTimeout(() => {
