@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nilini &amp; Prashan &mdash; අවුරුදු 6ක ආදරය</title>
+<title>Nilini &amp; Prashan &mdash; සුබ උපන්දිනයක් වේවා!</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;500;700;800&family=Noto+Sans+Sinhala:wght@300;400;500;600&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -118,7 +118,7 @@
   }
   .cut-btn:active { transform: scale(0.95); }
 
-  /* ---------- HERO & LOVE TIMER ---------- */
+  /* ---------- HERO & LOVE TIMER & BALLOONS ---------- */
   .hero{
     min-height:100vh;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -144,10 +144,34 @@
   }
   @keyframes fadeIn{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
 
+  /* Balloons Decoration */
+  .balloon-container {
+    position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+    overflow: hidden; pointer-events: none; z-index: 1;
+  }
+  .balloon {
+    position: absolute; bottom: -80px; width: 45px; height: 58px;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    opacity: 0; animation: floatBalloon linear infinite;
+  }
+  .balloon::after {
+    content: ""; position: absolute; bottom: -10px; left: 22px;
+    width: 1px; height: 10px; background: rgba(74,46,59,0.3);
+  }
+  .balloon-red { background: var(--rose); box-shadow: inset -5px -5px 12px rgba(0,0,0,0.15); }
+  .balloon-gold { background: var(--gold); box-shadow: inset -5px -5px 12px rgba(0,0,0,0.15); }
+  .balloon-pink { background: var(--blush); box-shadow: inset -5px -5px 12px rgba(0,0,0,0.15); }
+  @keyframes floatBalloon {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.75; }
+    90% { opacity: 0.75; }
+    100% { transform: translateY(-115vh) rotate(15deg); opacity: 0; }
+  }
+
   /* Love Timer */
   .love-timer-wrap {
     margin-top: 36px; text-align: center; width: 100%; max-width: 580px;
-    background: rgba(255, 255, 255, 0.85); border: 1px solid var(--blush);
+    background: rgba(255, 255, 255, 0.88); border: 1px solid var(--blush);
     padding: 24px 20px; border-radius: 20px; box-shadow: 0 12px 28px -15px rgba(178,58,90,0.25);
     animation: fadeIn 1s ease 1.5s forwards; opacity: 0;
   }
@@ -243,17 +267,6 @@
   }
   .card-box h3 { font-size: 18px; color: var(--rose-deep); margin-bottom: 15px; text-align: center; font-family: 'Abhaya Libre', serif;}
 
-  /* Feature: Trivia Quiz */
-  #quiz-content { width: 100%; display: flex; flex-direction: column; align-items: center; flex-grow: 1; justify-content: center; }
-  #quiz-question { text-align: center; font-size: 14px; margin-bottom: 15px; min-height: 44px; font-weight: 500; }
-  #quiz-options { display: flex; flex-direction: column; gap: 8px; width: 100%; }
-  .quiz-opt {
-    background: var(--cream); border: 1px solid var(--blush); padding: 8px 12px;
-    border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; text-align: center;
-    transition: background 0.2s, color 0.2s;
-  }
-  .quiz-opt:hover { background: var(--rose); color: #fff; border-color: var(--rose); }
-
   /* Feature: Scratch Card */
   .scratch-card-wrapper { position: relative; width: 220px; height: 120px; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
   .scratch-reveal-text {
@@ -294,7 +307,7 @@
   .calc-btn:hover { background: var(--rose-deep); }
   #calc-result { margin-top: 10px; font-size: 16px; font-weight: 700; color: var(--rose-deep); }
 
-  /* Feature: Message Jar */
+  /* Feature: Message Jar (Birthday Blessings Jar) */
   .jar-wrapper { position: relative; width: 80px; height: 110px; cursor: pointer; transition: transform 0.3s; }
   .jar-wrapper:hover { transform: scale(1.1); }
 
@@ -311,7 +324,7 @@
     padding: 2px 5px; border-radius: 4px; border: 1px solid var(--gold); color: var(--rose-deep); display: none;
   }
 
-  /* Feature: Redeemable Coupons */
+  /* Feature: Redeemable Coupons (Birthday Coupons) */
   .coupons-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
   .coupon-card {
     background: var(--cream); border: 1px dashed var(--rose); padding: 8px 4px;
@@ -346,7 +359,7 @@
   @keyframes spinReel { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
   .reel.spinning { animation: spinReel 2.5s linear infinite; }
 
-  /* Feature: Love Poem Book */
+  /* Feature: Love Poem Book (Sinhala Birthday Pathum Kavi) */
   .poem-wrapper { width: 100%; min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
   #current-poem {
     font-size: 13px; font-style: italic; line-height: 1.7; font-family: 'Abhaya Libre', serif;
@@ -389,7 +402,7 @@
 
   /* ---------- GALLERY (MEMORIES SCRAPBOOK) ---------- */
   .gallery{ padding:100px 20px 120px; overflow:hidden;}
-  .gallery h2{ text-align:center; font-size:clamp(26px,4vw,38px); color:var(--rose-deep); margin-bottom:48px;}
+  .gallery h2{ text-align:center; font-size:clamp(26px, 4vw, 38px); color:var(--rose-deep); margin-bottom:48px;}
   
   .grid{
     display:flex; flex-wrap:wrap; justify-content:center;
@@ -567,7 +580,7 @@
 <body>
 
 <!-- Hidden YT Audio Player Container -->
-<div id="yt-player-container" style="position:fixed; width:1px; height:1px; opacity:0; pointer-events:none; left:-100px; top:-100px; z-index:-9999;">
+<div id="yt-player-container">
   <div id="yt-player"></div>
 </div>
 
@@ -609,8 +622,17 @@
 
 <!-- HERO -->
 <section class="hero">
+  <!-- Balloons Background Decor -->
+  <div class="balloon-container">
+    <div class="balloon balloon-red" style="left: 8%; animation-duration: 11s; animation-delay: 0s;"></div>
+    <div class="balloon balloon-gold" style="left: 28%; animation-duration: 14s; animation-delay: 2s;"></div>
+    <div class="balloon balloon-pink" style="left: 48%; animation-duration: 10s; animation-delay: 0.8s;"></div>
+    <div class="balloon balloon-red" style="left: 68%; animation-duration: 13s; animation-delay: 2.5s;"></div>
+    <div class="balloon balloon-gold" style="left: 88%; animation-duration: 12s; animation-delay: 0.4s;"></div>
+  </div>
+
   <div class="eyebrow">අපි එකට සමරන 6 වෙනි උපන්දිනය</div>
-  <h1>Nilini &amp; Prashan<span class="script" style="display:block;font-size:.42em;color:var(--gold); margin-top:10px;">අපේ ආදරය</span></h1>
+  <h1>Happy Birthday Nilini! 👑</h1>
   <div class="names-sep"></div>
   <p class="sub">යාළුවෙච්ච දා ඉඳන් ඔයාගේ උපන්දිනය එකට සමරන 6 වෙනි වතාව මේක. හැම අවුරුද්දකම ඔයා ලඟ ඉන්න ලැබීම මට ලොකුම වාසනාවක්. සුබ උපන් දිනයක් වේවා, මගේ ආදරණීයම කෙනා.</p>
   
@@ -732,16 +754,16 @@
 
 <!-- INTERACTIVE GRID -->
 <section class="interactive-sec">
-  <h2>ආදරණීය තිළිණ සහ සටහන් (Gifts &amp; Notes)</h2>
+  <h2>උපන් දින තිළිණ සහ ප්‍රාර්ථනා (Gifts &amp; Wishes)</h2>
   <p class="lead">ඔයා වෙනුවෙන්ම සකස් කළ සොඳුරු අත්දැකීම්</p>
   <div class="interactive-grid">
     
     <!-- Golden Scratch Card -->
     <div class="card-box" id="scratch-box">
-      <h3>රහස් පණිවිඩය (Scratch Card)</h3>
+      <h3>රහස් උපන් දින පණිවිඩය (Scratch Card)</h3>
       <div class="scratch-card-wrapper">
         <div class="scratch-reveal-text">
-          මගේ මුළු ජීවිතයටම ලැබුණු වටිනාම තෑග්ග ඔයා! සුබ උපන්දිනයක් වේවා මගේ හදවත! ❤
+          මගේ මුළු ජීවිතයටම ලැබුණු වටිනාම තෑග්ග ඔයා! සුබ උපන්දිනයක් වේවා මගේ රත්තරන් නිලිනි! ❤
         </div>
         <canvas id="scratch-canvas" width="220" height="120"></canvas>
       </div>
@@ -763,33 +785,33 @@
       <p style="font-size:11px; opacity:0.6; margin-top:10px;" id="gift-hint">තෑග්ග විවෘත කිරීමට ක්ලික් කරන්න</p>
     </div>
     
-    <!-- Redeemable Coupons -->
+    <!-- Redeemable Coupons (Birthday Coupons) -->
     <div class="card-box" id="coupons-box">
-      <h3>ආදර කුපන් පත් (Love Coupons)</h3>
+      <h3>උපන් දින තෑගි කුපන් (Birthday Treats)</h3>
       <div class="coupons-wrapper">
-        <div class="coupon-card" onclick="redeemCoupon(this, 'Big Warm Hug')">
-          <span>Hug Coupon</span>
+        <div class="coupon-card" onclick="redeemCoupon(this, 'Special Birthday Surprise Treat')">
+          <span>Surprise Treat</span>
           <div class="stamp">REDEEMED</div>
         </div>
-        <div class="coupon-card" onclick="redeemCoupon(this, 'Romantic Date')">
-          <span>Date Coupon</span>
+        <div class="coupon-card" onclick="redeemCoupon(this, 'Warm Birthday Hug')">
+          <span>Birthday Hug</span>
           <div class="stamp">REDEEMED</div>
         </div>
-        <div class="coupon-card" onclick="redeemCoupon(this, 'Late Night Call')">
-          <span>Call Coupon</span>
+        <div class="coupon-card" onclick="redeemCoupon(this, 'Special Birthday Gift Hunt')">
+          <span>Gift Hunt</span>
           <div class="stamp">REDEEMED</div>
         </div>
-        <div class="coupon-card" onclick="redeemCoupon(this, 'Sweet Kiss')">
-          <span>Kiss Coupon</span>
+        <div class="coupon-card" onclick="redeemCoupon(this, 'Sweet Birthday Kiss')">
+          <span>Birthday Kiss</span>
           <div class="stamp">REDEEMED</div>
         </div>
       </div>
       <p style="font-size:11px; opacity:0.6; margin-top:10px;">කුපනයක් Redeem කිරීමට ක්ලික් කරන්න</p>
     </div>
 
-    <!-- Message Jar -->
+    <!-- Message Jar (Birthday Blessings Jar) -->
     <div class="card-box" id="message-jar">
-      <h3>ආදර පණිවිඩ බඳුන (Message Jar)</h3>
+      <h3>උපන් දින සුබපැතුම් බඳුන (Wishes Jar)</h3>
       <div class="jar-wrapper" onclick="extractJarMessage()">
         <svg viewBox="0 0 100 130" width="80" height="110">
           <rect x="35" y="10" width="30" height="10" rx="3" fill="#D6A45C" />
@@ -814,7 +836,7 @@
     
     <!-- Cassette Player -->
     <div class="card-box" id="cassette-box">
-      <h3>ආදර ගීත තැටිය (Love Playlist)</h3>
+      <h3>උපන් දින ගීත තැටිය (Love Playlist)</h3>
       <div class="cassette-wrapper">
         <div class="cassette-label">Nilini &amp; Prashan Loop Playlist</div>
         <div class="cassette-center">
@@ -826,9 +848,9 @@
       <p style="font-size:11px; opacity:0.6; margin-top:10px;">සින්දුව ප්ලේ වනවිට කැසට් රෝද කැරකේ</p>
     </div>
 
-    <!-- Love Poem Book -->
+    <!-- Love Poem Book (Birthday Wish Poems) -->
     <div class="card-box" id="poem-box">
-      <h3>ආදර කවි පොත (Love Poem Book)</h3>
+      <h3>උපන් දින පැතුම් කවි (Birthday Wishes)</h3>
       <div class="poem-wrapper">
         <p id="current-poem"></p>
         <div style="display:flex; gap:16px; margin-top:10px;">
@@ -841,20 +863,9 @@
   </div>
 </section>
 
-<!-- GAMES SECTION (Trivia Quiz and Love Calculator) -->
+<!-- LOVE CALCULATOR & LOVE LOCK WALL -->
 <section class="interactive-sec" style="padding-top:0;">
-  <h2>ආදර සබඳතා ක්‍රීඩා (Love Games)</h2>
-  <p class="lead">අපේ මතකයන් සහ ගැලපීම පරීක්ෂා කර බලමු</p>
   <div class="interactive-grid">
-
-    <!-- Trivia Quiz -->
-    <div class="card-box" id="trivia-box">
-      <h3>ආදර කෝඩුකාරයා (Relationship Quiz)</h3>
-      <div id="quiz-content">
-        <p id="quiz-question"></p>
-        <div id="quiz-options"></div>
-      </div>
-    </div>
 
     <!-- Love Calculator -->
     <div class="card-box" id="love-calculator">
@@ -867,14 +878,8 @@
       <div id="calc-result"></div>
     </div>
 
-  </div>
-</section>
-
-<!-- LOVE LOCK WALL -->
-<section class="interactive-sec" style="padding-top:0;">
-  <div class="interactive-grid" style="grid-template-columns:1fr; max-width:500px;">
     <!-- Love Lock Wall -->
-    <div class="card-box" id="love-lock-box" style="min-height:220px;">
+    <div class="card-box" id="love-lock-box">
       <h3>ආදරයේ අගුල (Love Lock Wall)</h3>
       <div class="lock-wall-wrapper">
         <div id="padlock-widget">
@@ -884,6 +889,7 @@
       </div>
       <p style="font-size:11px; opacity:0.6; margin-top:10px;" id="lock-hint">අගුල මත ක්ලික් කර ආදරය ලොක් කරන්න</p>
     </div>
+
   </div>
 </section>
 
@@ -1286,7 +1292,6 @@
   function updateLoveTimer() {
     const now = new Date();
     
-    // Calendar math for Years, Months, and Days
     let years = now.getFullYear() - anniversaryDate.getFullYear();
     let months = now.getMonth() - anniversaryDate.getMonth();
     let days = now.getDate() - anniversaryDate.getDate();
@@ -1453,17 +1458,16 @@
     }, 45);
   }
 
-  // ---------- INTERACTIVE GIMMICK: MESSAGE JAR ----------
+  // ---------- INTERACTIVE GIMMICK: BIRTHDAY WISHES JAR ----------
   const jarQuotes = [
-    "ඔයා මගේ ජීවිතේ ලස්සනම හීනයක්.",
-    "කල්ප කාලයක් ඔයා මගේම විතරක් වෙන්න.",
-    "මගේ හුස්ම වැටෙන වාරයක් පාසා මට ඔයාව මතක් වෙනවා.",
-    "ලෝකෙම එපා වුණත් මට ඔයාව එපා වෙන්නේ නැහැ.",
-    "ඔයා තමයි මගේ ජීවිතේ සැබෑ වුණු ලොකුම ප්‍රාර්ථනාව.",
-    "හැමදාම මගේ ළඟින්ම ඉන්න රත්තරන්.",
-    "ඔයාගේ හිනාව මගේ ලෝකයේ තියෙන ලස්සනම දේ.",
-    "මගේ මුළු හදවතම ඔයාට ලියලා ඉවරයි.",
-    "ආදරෙයි පණ වගේ, මගේ සුදු නෝනා."
+    "සුබ උපන්දිනයක් වේවා මගේ රත්තරන් නිලිනි!",
+    "ඔයා පතන හැම සිහිනයක්ම අද දවසේ සැබෑ වේවා!",
+    "දිවිය පුරා නිරෝගී සුවය හා සතුට ඔයාට ලැබේවා!",
+    "ප්‍රශාන්ගේ මුළු ජීවිතයම සතුටින් පිරවූ ඔයාට සුබ උපන්දිනයක්!",
+    "හැමදාමත් මගේ ළඟින්ම ඉන්න ආදරණීය රත්තරන්!",
+    "දිවියේ හැම බාධකයක්ම ජයගෙන සතුටින් ඉන්න ලැබේවා!",
+    "ඔයාගේ ලස්සන හිනාව කවදාවත් මැලවෙන්න එපා!",
+    "මගේ හුස්ම වගේ වටිනා මගේ ආදර නෝනාට සුබ උපන්දිනයක්!"
   ];
 
   function extractJarMessage() {
@@ -1471,11 +1475,11 @@
     showDialog("ආදර බඳුනෙන් පණිවිඩයක් 📜", `<p style="font-size:16px; font-style:italic; font-family:'Abhaya Libre', serif; line-height:1.8;">"${randomQuote}"</p>`);
   }
 
-  // ---------- INTERACTIVE GIMMICK: LOVE POEMS SLIDER ----------
+  // ---------- INTERACTIVE GIMMICK: BIRTHDAY POEMS ----------
   const poems = [
-    "හදේ ලියවුණු සොඳුරු ආදර සැඳෑවක,<br>ඔබේ දෑතේ පහස ලැබුණා සැනසීමක.<br>කල්ප කාලයක් මගේ ළඟ රැඳී හෙට,<br>ඉන්න ආදරෙන් සදාකාලික ලෝකයක.",
-    "ඔබේ සිනහව මගේ මුළු ලෝකයම හැඩ කළා,<br>ඔබේ බැල්මෙන් මගේ හදවතම පිබිදුණා.<br>ප්‍රශාන්ගේ පණ වගේ ආදරය ඔබ නිසා,<br>හැමදාම ළඟින් ඉන්න මගේ ආදර නෝනා.",
-    "තරු පිරුණු අහස යට හමුවුණු සොඳුරු දිනේ,<br>අපේ ආදරයේ අඩිතාලම වැටුණු දිනේ.<br>2020 මාර්තු 23 එදා එළඹි දිනේ,<br>ලියවුණා අපේ ආදර කතාව හදවතේ."
+    "නිලිනි නමට සෙනෙහස දෝරේ ගලන,<br>උපන් දිනය අද වන් සොඳුරුම දවස,<br>ප්‍රාර්ථනා කරමි සතුටින් පිරි හෙටක්,<br>සුබ උපන් දිනයක් වේවා මගේ පණට.",
+    "නිරෝගී සුවය දිවියට නිරතුරු ලැබෙන,<br>ප්‍රාර්ථනා කරන හැම සිහිනය සැබෑ වන,<br>ප්‍රශාන්ගේ හදවතේ රජ කරන සොඳුරු ළඳ,<br>සුබම සුබ උපන් දිනයක් වේවා මගේ පණ.",
+    "වාසනාව සතුට නිරතුරුවම උතුරන,<br>ආදරණීය මතකයන් මතකයේ රැඳෙන,<br>මගේ ජීවිතේ ලස්සනම සිහිනය වූ,<br>සුබ උපන් දිනයක් වේවා මගේ සුදු නෝනා."
   ];
   let currentPoemIdx = 0;
   function updatePoem() {
@@ -1495,7 +1499,6 @@
   const treeContainer = document.getElementById('tree-polaroids');
   const treePhotosCount = 12;
   
-  // Specific percentage positions aligned with hanging lines of SVG tree
   const treeCoords = [
     { left: 16, top: 51, r: -5 },   // Line x=220, y=280 -> y=330
     { left: 65, top: 52, r: 6 },    // Line x=570, y=290 -> y=340
@@ -1513,19 +1516,19 @@
   
   // 39 UNIQUE CAPTIONS ARRAY (1-12 for Tree, 13-39 for Gallery Grid)
   const allCaptions = [
-    "අපේ ආරම්භය - පළමු හමුවීම",               // 1
+    "සුබ උපන්දිනයක් වේවා මගේ පණ",               // 1
     "ඔයාගේ ලස්සනම හිනාව මැවුණු දවස",          // 2
-    "එකට ගෙවූ සොඳුරු මොහොතක්",               // 3
+    "හැමදාමත් සතුටින් ඉන්න රත්තරන්",               // 3
     "මගේ හිත ගත්තු ආදරණීය බැල්ම",             // 4
-    "හැමදාමත් මගේ ළඟින් ඉන්න",                // 5
-    "අපේ ජීවිතේ ලස්සනම මතකයක්",               // 6
-    "ඔයා ලැබීම මගේ ලොකුම වාසනාව",            // 7
+    "මගේ ජීවිතයේ වටිනාම තෑග්ග ඔයා",                // 5
+    "සුබම සුබ උපන්දිනයක් වේවා නිලිනි",               // 6
+    "ඔයා ලැබීම මගේ ජීවිතේ ලොකුම වාසනාව",            // 7
     "හදවතින්ම බැඳුණු සදාකාලික ආදරය",          // 8
-    "මගේ ලෝකය ආලෝකවත් කළ ප්‍රාර්ථනාව",       // 9
-    "හැම හුස්මකම රැඳුණු මගේ ආදරය",            // 10
-    "අපේ ආදරේ සුන්දර සේයාවක්",               // 11
+    "ප්‍රාර්ථනා කරන හැම සිහිනයක්ම සැබෑ වේවා",       // 9
+    "මගේ හදවතේ රැජිණට සුබ උපන්දිනයක්",            // 10
+    "නිරෝගී සුවය පිරි සතුටුමත් හෙටක්",               // 11
     "හිත පිරුණු සොඳුරු සිනහවක්",                // 12
-    "සතුටින් පිරුණු අපේ සුන්දර සන්ධ්‍යාවක්",      // 13 (Start of Gallery Grid)
+    "අද වගේ හැමදාම සතුටින් සිනාසෙන්න",      // 13 (Start of Gallery Grid)
     "හීනයක් වගේ ගෙවුණු සුන්දර කාලය",            // 14
     "මගේ ජීවිතයේ වටිනාම වස්තුව ඔයා",            // 15
     "නොමියෙන මතකයන් පෙළ ගැසෙන මොහොතක්",       // 16
@@ -1571,21 +1574,23 @@
     
     img.onerror = function() {
       img.remove();
-      // Replace with beautiful glowing heart fruit in SVG/CSS
       const heartFruit = document.createElement('div');
       heartFruit.className = 'tree-heart-fruit';
       heartFruit.innerHTML = '&#10084;';
       frame.appendChild(heartFruit);
     };
     
-    // Hidden span loaded in DOM so Lightbox reads correct caption
     const captionDiv = document.createElement('span');
     captionDiv.className = 'caption';
     captionDiv.style.display = 'none';
     captionDiv.textContent = cap;
     
     frame.addEventListener('click', () => {
-      openLightbox(img.src, cap);
+      if (img.parentNode) {
+        openLightbox(img.src, cap);
+      } else {
+        showDialog("උපන් දින ප්‍රාර්ථනාවක් 🌸", cap);
+      }
     });
 
     frame.appendChild(img);
@@ -1618,61 +1623,6 @@
     });
     mapContainer.appendChild(pin);
   });
-
-  // ---------- FEATURE: LOVE TRIVIA QUIZ ----------
-  const quizQuestions = [
-    {
-      q: "අපි දෙන්නා මුලින්ම මුහුණට මුහුණ හමුවුණේ කොහෙදිද?",
-      opts: ["පංතියකදී", "බස් එකකදී", "උද්‍යානයකදී"],
-      correct: 0
-    },
-    {
-      q: "මම ඔයාට මුලින්ම ආදරෙයි කිව්ව දවස මතකද?",
-      opts: ["සැප්තැම්බර් 3", "පෙබරවාරි 14", "අප්‍රේල් 1"],
-      correct: 0
-    },
-    {
-      q: "මගේ ජීවිතේ මට ලැබුණු වටිනාම තෑග්ග මොකක්ද?",
-      opts: ["නවීන දුරකථනයක්", "ඔයා (Nilini ❤)", "මිල මුදල්"],
-      correct: 1
-    }
-  ];
-  
-  let currentQuizStep = 0;
-  
-  function renderQuizQuestion() {
-    const questionText = document.getElementById('quiz-question');
-    const optionsContainer = document.getElementById('quiz-options');
-    
-    if (currentQuizStep >= quizQuestions.length) {
-      questionText.innerHTML = "සුබ පැතුම්! 🏆";
-      optionsContainer.innerHTML = `<p style='text-align:center; font-size:13px; color:var(--rose-deep); font-weight:600; line-height:1.5;'>ඔයා මගේ ජීවිතේ හැමදේම හොඳින්ම දන්නවා! මගේ මුළු ලෝකයම ඔයා විතරයි! ❤</p>`;
-      return;
-    }
-    
-    const currentQ = quizQuestions[currentQuizStep];
-    questionText.textContent = currentQ.q;
-    optionsContainer.innerHTML = '';
-    
-    currentQ.opts.forEach((opt, idx) => {
-      const btn = document.createElement('div');
-      btn.className = 'quiz-opt';
-      btn.textContent = opt;
-      btn.addEventListener('click', () => checkQuizAnswer(idx));
-      optionsContainer.appendChild(btn);
-    });
-  }
-
-  function checkQuizAnswer(selectedIdx) {
-    const currentQ = quizQuestions[currentQuizStep];
-    if (selectedIdx === currentQ.correct) {
-      currentQuizStep++;
-      renderQuizQuestion();
-    } else {
-      showDialog("අයියෝ!", "ඒක වැරදියි! ආයෙත් උත්සාහ කරලා බලන්න. 🥺");
-    }
-  }
-  renderQuizQuestion();
 
   // ---------- TIMELINE REVEAL ON SCROLL ----------
   const items = document.querySelectorAll('.t-item');
@@ -1710,10 +1660,8 @@
     if (e.key === 'Escape') closeLightbox();
   });
 
-  // Lightbox arrow navigation
   function navigateLightbox(dir) {
     const allFrames = Array.from(document.querySelectorAll('.frame, .tree-frame'));
-    // Filter tree frames to only include those that actually have images loaded
     const activeFrames = allFrames.filter(f => f.style.display !== 'none' && f.querySelector('img'));
     if (activeFrames.length === 0) return;
     
@@ -1735,7 +1683,6 @@
   document.getElementById('lightbox-prev').addEventListener('click', () => navigateLightbox(-1));
   document.getElementById('lightbox-next').addEventListener('click', () => navigateLightbox(1));
 
-  // Lightbox touch swiping
   let touchStartX = 0;
   let touchEndX = 0;
   lightbox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
@@ -1780,7 +1727,7 @@
     img.src = 'photo' + i + '.jpg';
     img.alt = 'මතකයක්';
     
-    const capText = allCaptions[i - 1]; // reads correct unique index
+    const capText = allCaptions[i - 1];
     
     img.onload = function(){
       frame.style.display = 'block';
@@ -1857,7 +1804,6 @@
     }
   }
 
-  // Love letter Envelope toggle
   const env = document.getElementById('envelope');
   const paper = document.getElementById('letterPaper');
   env.addEventListener('click', (e)=>{
